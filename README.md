@@ -20,4 +20,5 @@
 
 	git add . 
 	git commit -m "提交说明"
-	git push origin master https://github.com/qingfengyizu/sysu_study.git
+	git pull origin master
+	git push origin master
