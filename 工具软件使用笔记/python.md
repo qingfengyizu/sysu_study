@@ -123,6 +123,18 @@ pass是空语句，是为了保持程序结构的完整性。
 |   f.write()   |  将 string 写入到文件中               |
 |   f.seek(offset, from_what)    |                 改变文件当前的位置|
 | f.close()     |           关闭文档      |
+	
+	# 举例写写文本
+	save_text_fid = open(save_text_path, 'w')
+	save_text_fid.write("%10.2f   %15.6f \n" % (reward ,softmax  ))
+	save_text_fid.close()
+	# 读文本
+	line_raw = sequence_lable_fid.readline()
+	if not line_raw:
+		break
+ 	line_data = np.array(list(map(int, line_raw.split())))
+	sequence_lable_fid.close()
+
 
 ## 1.7 添加模块路径
 import os,sys
@@ -232,6 +244,8 @@ numpy.linalg.inv() 函数计算矩阵的乘法逆矩阵。
 savetxt() 函数是以简单的文本文件格式存储数据，对应的使用 loadtxt() 函数来获取数据。
 np.loadtxt(FILENAME, dtype=int, delimiter=' ')
 np.savetxt(FILENAME, a, fmt="%d", delimiter=",")
+
+
 
 #### 广播
 广播(Broadcast)是 numpy 对不同形状(shape)的数组进行数值计算的方式， 对数组的算术运算通常在相应的元素上进行。当运算中的 2 个数组的形状不同时，numpy 将自动触发广播机制。

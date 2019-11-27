@@ -19,6 +19,6 @@
 4、本地同步到GitHub
 
 	git add . 
-	git commit -m "提交说明"
+	git commit -m "note"
 	git pull origin master
 	git push origin master
