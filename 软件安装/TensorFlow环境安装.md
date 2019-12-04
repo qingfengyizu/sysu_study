@@ -186,7 +186,7 @@ conda config --show # 查看conda的配置，确认channels
 激活tensorflow环境
 
 ```
-conda create python=3.6 --prefix=/software/anaconda3/envs/tensorflow
+conda create python=3.6 -n tensorflow36
 ```
 pip安装tensorflow-gpu，并使用豆瓣镜像加速下载
 
@@ -268,3 +268,16 @@ pycharm远程调试ImportError:libcusolver.so.8.0: cannot open shared object fil
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2019061310565492.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoZXN0bnV0c3M=,size_16,color_FFFFFF,t_70)
 参考
 https://blog.csdn.net/qq_34654240/article/details/80480849
+
+
+## 在win10 上安装
+下载cuda和cudnn。
+
+在安装cuda时选择 **自定义高级**
+
+**cudnn安装**。解压“cudnn-9.0-windows10-x64-v7.zip”，将一下三个文件夹，拷贝到CUDA安装的根目录下。默认路径在 C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0。再添加环境变量到path中，
+![enter description here](./pic/cudnn环境变量.png)
+
+
+
+参考：[Win10,Anaconda,tensorflow-gpu安装教程](https://www.cnblogs.com/apan008/p/11254688.html)
