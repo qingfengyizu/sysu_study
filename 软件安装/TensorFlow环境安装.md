@@ -238,6 +238,24 @@ https://blog.csdn.net/qq_30683995/article/details/82619859
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190915201043272.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoZXN0bnV0c3M=,size_16,color_FFFFFF,t_70)
 
 
+下载.whl安装文件，可以按pytorch安装指南的[官网](https://pytorch.org/get-started/previous-versions/)，选择适合自己的版本，选择用迅雷下载连接 https://download.pytorch.org/whl/cu90/torch-1.1.0-cp36-cp36m-win_amd64.whl。
+
+ 安装pytorch
+ 
+
+``` javascript
+pip install torch-1.1.0-cp36-cp36m-win_amd64.whl
+pip install torchvision
+```
+
+更新numpy
+``` javascript
+pip install numpy =1.14.5 
+```
+参考 ： [linux笔记：ubuntu16.04中Anaconda下安装Pytorch(基于conda或pip)](https://blog.csdn.net/abc13526222160/article/details/86497684#conda%E5%AE%89%E8%A3%85Pytorch%E4%B8%8B%E8%BD%BD%E8%BF%87%E6%85%A2%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95)，[Python import torch 错误：ModuleNotFoundError: No module named 'numpy.core._multiarray_umath'](https://blog.csdn.net/u014084982/article/details/90723584)
+
+
+
 ## 安装pycharm
 下载pycharm社区版本，解压即可使用
 破解版的安装参考 https://www.jianshu.com/p/8abc6e0ddb7e

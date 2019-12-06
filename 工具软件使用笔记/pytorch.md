@@ -1,6 +1,6 @@
 # 一、PyTorch 是什么
 
-PyTorch是一个基于Python的科学计算包，相比numpy能使用GPU来加快计算。
+PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言处理等应用程序。它主要由Facebookd的人工智能小组开发，不仅能够 实现强大的GPU加速，同时还支持动态神经网络，这一点是现在很多主流框架如TensorFlow都不支持的。 
 
 # 二、基本语法
 介绍pytorch基本知识，对pytorch有基本的了解，构建基本的神经网络。主要参考pytorch官方教程。
@@ -16,13 +16,13 @@ PyTorch是一个基于Python的科学计算包，相比numpy能使用GPU来加�
 |--|--|
 | torch.tensor(data ) | 赋值 |
 |torch.arange(start,end,step=1,out=None)|
-|torch.zeros(*sizes )|全部生成为0 
-|torch.clone()||
+|orch.zeros(*sizes )|全部生成为0 |
+|torch.clone()|
 |torch.ones(*sizes )|全部生成为1 |
-|torch.eye(n,m=None,out=None)|返回一个2维张量，对角线位置全为1，其他位置全0
+|torch.eye(n,m=None,out=None)|返回一个2维张量，对角线位置全为1，其他位置全0|
 |torch.from_numpy(ndarray)|tensor和numpy的转换|
-|torch.linspace(start, end, steps=100, out=None) |返回一个1维张量，包含在区间start和end上均匀间隔的step个点。
-|torch.logspace(start,end,steps=100.out=None)|设置的区间为常用对数，输出的值为其对应的真数
+|torch.linspace(start, end, steps=100, out=None) |返回一个1维张量，包含在区间start和end上均匀间隔的step个点。|
+|torch.logspace(start,end,steps=100.out=None)|设置的区间为常用对数，输出的值为其对应的真数|
 
 ### 创建随机Tensor
 |函数|说明  |
@@ -31,21 +31,21 @@ PyTorch是一个基于Python的科学计算包，相比numpy能使用GPU来加�
 |torch.randperm(n,out=None)|返回一个从0到n-1的随机整数排列|
 |torch.randn(*sizes, out=None)|从标准正态分布（均值为0，方差为1，即高斯白噪声）中抽取的一组随机数|
 |torch.normal(means, std, out=None) |指定均值means和标准差std的离散正态分布中抽取的一组随机数。|包含在区间start和end上均匀间隔的step个点。|
-|uniform(from,to)|均匀分布
+|uniform(from,to)|均匀分布|
 
-### 常用Tensor操作
+### 常用Tensor方法
 |函数|说明  |
 |--|--|
-|view(*shape) |调整tensor的形状,与源tensor共享内存|
+|torch.view(*shape) |调整tensor的形状,与源tensor共享内存|
 |torch.squeeze(input, dim=None, out=None)|删除尺寸1的输入的所有尺寸的张量|
 |torch.unsqueeze(input, dim, out=None) |插入在指定位置的尺寸标注尺寸的新张量。|
-|resize|修改tensor的尺寸|
-|None|添加一个轴|
+|torch.resize|修改tensor的尺寸|
+|torch.None|添加一个轴|
 |a > 1|返回一个bool矩阵|
-gather(input, dim, index)|根据index，在dim维度上选取数据，输出的size与index一样
-index_select(input, dim, index)|在指定维度dim上选取，比如选取某些行、某些列
-masked_select(input, mask)|例子如上，a[a>0]，使用ByteTensor进行选取
-non_zero(input)|非0元素的下标
+|torch.gather(input, dim, index)|根据index，在dim维度上选取数据，输出的size与index一样|
+|torch.index_select(input, dim, index)|在指定维度dim上选取，比如选取某些行、某些列|
+|torch.masked_select(input, mask)|例子如上，a[a>0]，使用ByteTensor进行选取|
+|torch.non_zero(input)|非0元素的下标|
 
 ### 数值计算
 |函数|说明  |
@@ -54,11 +54,11 @@ non_zero(input)|非0元素的下标
 |cos/sin/asin/atan2/cosh..|相关三角函数|
 |ceil/round/floor/trunc| 上取整/四舍五入/下取整/只保留整数部分|
 |clamp(input, min, max)|超过min和max部分截断|
-|sigmod/tanh..|激活函数
+|sigmod/tanh..|激活函数|
 | torch.lerp(star, end, weight)  |  返回结果是out= star t+ (end-start) * weight |
- |  torch.equal(torch.Tensor(a), torch.Tensor(b))  | 两个张量进行比较，如果相等返回true，否则返回false
- |torch.max(input)| 返回输入元素的最大值
- |mean/sum/median/mode|均值/和/中位数/众数|
+|  torch.equal(torch.Tensor(a), torch.Tensor(b))  | 两个张量进行比较，如果相等返回true，否则返回false|
+|torch.max(input)| 返回输入元素的最大值|
+|mean/sum/median/mode|均值/和/中位数/众数|
 |norm/dist|范数/距离|
 |std/var|标准差/方差|
 |cumsum/cumprod|累加/累乘|
@@ -66,6 +66,7 @@ non_zero(input)|非0元素的下标
 |topk|最大的k个数|
 |sort|排序|
 |max/min|比较两个tensor最大最小值|
+
 ### 线性代数计算
 |函数|说明  |
 |--|--|
@@ -73,7 +74,7 @@ non_zero(input)|非0元素的下标
 |diag|对角线元素|
 |triu/tril|矩阵的上三角/下三角，可指定偏移量|
 |mm/bmm|矩阵乘法，batch的矩阵乘法|
-|addmm/addbmm/addmv/addr/badbmm..|矩阵运算
+|addmm/addbmm/addmv/addr/badbmm..|矩阵运算|
 |t|转置|
 |dot/cross|内积/外积
 |inverse|求逆矩阵
@@ -91,15 +92,129 @@ Variable 支持大部分tensor支持的函数，但其不支持部分inplace函�
 
 用out.backward()来执行反向传播。此Tensor的梯度将累积到.grad属性中。如果不想要被继续追踪，可以调用.detach()将其从追踪记录中分离出来，这样就可以防止将来的计算被追踪，这样梯度就传不过去了。此外，还可以用with torch.no_grad()将不想被追踪的操作代码块包裹起来，这种方法在评估模型的时候很常用，因为在评估模型时，我们并不需要计算可训练参数（requires_grad=True）的梯度。注意：grad在反向传播过程中是累加的（accumulated），这意味着每次运行反向传播，梯度都会累加之前的梯度，所以反向传播之前需把梯度清零x.grad.data.zero_()。
 
+torch.Tensor 是包的核心类。如果将其属性 .requires_grad 设置为 True，则会开始跟踪针对 tensor 的所有操作。完成计算后，您可以调用 .backward() 来自动计算所有梯度。该张量的梯度将累积到 .grad 属性中。
+
+``` pythoncript
+x = torch.ones(2, 2, requires_grad=True)
+a = torch.randn(2, 2)
+a.requires_grad_(True)
+print(a.requires_grad)
+
+```
+
+
+
 
 ## 2.3 构建神经网络
-autograd实现了自动微分系统，然而对于深度学习来说过于底层，其抽象程度较低，如果用其来实现深度学习模型，则需要编写的代码量极大。在这种情况下，torch.nn应运而生，其是专门为深度学习设计的模块。torch.nn的核心数据结构是Module，它是一个抽象的概念，既可以表示神经网络中的某个层（layer），也可以表示一个包含很多层的神经网络。
+​	autograd实现了自动微分系统，然而对于深度学习来说过于底层，其抽象程度较低，如果用其来实现深度学习模型，则需要编写的代码量极大。在这种情况下，torch.nn应运而生，其是专门为深度学习设计的模块。torch.nn的核心数据结构是Module，它是一个抽象的概念，既可以表示神经网络中的某个层（layer），也可以表示一个包含很多层的神经网络。
+
+1.定义一个包含可训练参数的神经网络
+
+```python
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 
+class Net(nn.Module):
+
+    def __init__(self):
+        super(Net, self).__init__()
+        # 1 input image channel, 6 output channels, 5x5 square convolution
+        # kernel
+        self.conv1 = nn.Conv2d(1, 6, 5)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        # an affine operation: y = Wx + b
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
+
+    def forward(self, x):
+        # Max pooling over a (2, 2) window
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
+        # If the size is a square you can only specify a single number
+        x = F.max_pool2d(F.relu(self.conv2(x)), 2)
+        x = x.view(-1, self.num_flat_features(x))
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+    def num_flat_features(self, x):
+        size = x.size()[1:]  # all dimensions except the batch dimension
+        num_features = 1
+        for s in size:
+            num_features *= s
+        return num_features
+
+
+net = Net()
+print(net)
+params = list(net.parameters())
+```
+
+2.迭代整个输入
+
+```python
+input = torch.randn(1, 1, 32, 32)
+out = net(input)
+```
+
+3.通过神经网络处理输入
+
+4.计算损失(loss)
+
+```
+criterion = nn.MSELoss()
+loss = criterion(output, target)
+```
+
+5.反向传播梯度到神经网络的参数
+
+```
+net.zero_grad()
+out.backward()
+learning_rate = 0.01
+for f in net.parameters():
+    f.data.sub_(f.grad.data * learning_rate)
+#如果你是用神经网络，你想使用不同的更新规则，类似于 SGD, Nesterov-SGD, Adam, RMSProp, 等。为了让这可行，我们建立了一个小包：torch.optim 实现了所有的方法。使用它非常的简单。
+import torch.optim as optim
+# create your optimizer
+optimizer = optim.SGD(net.parameters(), lr=0.01)
+# in your training loop:
+optimizer.zero_grad()   # zero the gradient buffers
+output = net(input)
+loss = criterion(output, target)
+loss.backward()
+optimizer.step()    # Does the update
+```
+
+
+
+## 2.4 并行化
+
+​	如何用 DataParallel 来使用多 GPU。
+
+```python
+#通过 PyTorch 使用多个 GPU 非常简单。将模型放在一个 GPU：
+ device = torch.device("cuda:0")
+ model.to(device)
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#可以复制所有的张量到 GPU：
+mytensor = my_tensor.to(device)
+```
+
+​	尽管如此，PyTorch 默认只会使用一个 GPU。通过使用 DataParallel 让你的模型并行运行，你可以很容易的在多 GPU 上运行你的操作。
+
+```python
+model = nn.DataParallel(model)
+```
+
+​	
 
 # 三、常用函数
 
-
+​	
 
 
 
@@ -113,11 +228,10 @@ autograd实现了自动微分系统，然而对于深度学习来说过于底层
 |torch.squeeze(inout,dim=None,out=None)|将输入张量形状中的1去除|
 |torch.expand(*sizes) |单个维度扩大为更大的尺寸。|
 |index_add_(dim, index, tensor) |按参数index中的索引数确定的顺序，将参数tensor中的元素加到原来的tensor中。|
-|repeat(*sizes) |沿着指定的维度重复tensor。
+|repeat(*sizes) |沿着指定的维度重复tensor。|
 |torch.reshape(input, shape) |
-
-|.torch.transpose(input, dim0, dim1)|转置|
-|.torch.masked_select(input, mask, out=None) |根据二进制掩码对输入进行索引，这是一个新的索引|
+|torch.transpose(input, dim0, dim1)|转置|
+|torch.masked_select(input, mask, out=None) |根据二进制掩码对输入进行索引，这是一个新的索引|
 |torch.chunk(tensor, chunks, dim=0) |将张量拆分为特定数量的“块”|
 |torch.narrow(input, dimension, start, length)|
 |torch.stack(seq, dim=0, out=None) |拼接|
