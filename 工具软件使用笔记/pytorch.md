@@ -11,13 +11,24 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
 （2）tensor.function，如a.view等。
 **说明**：函数名以_结尾的都是inplace方式，即会修改调用者自己的数据，如a.add（b），加法的结果仍存储在a中，a被修改了。
 
+
+
+### Tensor 和 numpy 的转换
+
+```
+a=torch.tensor([12.0,11],requires_grad=True)
+b=b.data.numpy()
+```
+
+
+
 ### 创建Tensor
 |函数|说明  |
-|--|--|
+|:-:|:-:|
 | torch.tensor(data ) | 赋值 |
-|torch.arange(start,end,step=1,out=None)|
-|orch.zeros(*sizes )|全部生成为0 |
-|torch.clone()|
+|torch.arange(start,end,step=1,out=None)||
+|torch.zeros(*sizes )|全部生成为0 |
+|torch.clone()||
 |torch.ones(*sizes )|全部生成为1 |
 |torch.eye(n,m=None,out=None)|返回一个2维张量，对角线位置全为1，其他位置全0|
 |torch.from_numpy(ndarray)|tensor和numpy的转换|
@@ -221,7 +232,7 @@ model = nn.DataParallel(model)
 
 
 
-## 索引，切片，连接，换位
+### 索引，切片，连接，换位
 |函数|说明  |
 |--|--|
 |torch.cat(inputs,dimension=0)|在给定维度上对输入的张量序列进行连接操作|
@@ -236,7 +247,76 @@ model = nn.DataParallel(model)
 |torch.narrow(input, dimension, start, length)|
 |torch.stack(seq, dim=0, out=None) |拼接|
 
+### 存储和提取模型参数
 
+```
+torch.save(net1, 'net.pkl')  # save entire net
+torch.save(net1.state_dict(), 'net_params.pkl')   # save only the parameters
+net3.load_state_dict(torch.load('net_params.pkl'))
+
+```
+
+### 批量的数据
+
+```
+import torch.utils.data as Data
+BATCH_SIZE = 5
+x = torch.linspace(1, 10, 10)       # this is x data (torch tensor)
+y = torch.linspace(10, 1, 10)       # this is y data (torch tensor)
+torch_dataset = Data.TensorDataset(x, y)
+loader = Data.DataLoader(
+    dataset=torch_dataset,      # torch TensorDataset format
+    batch_size=BATCH_SIZE,      # mini batch size
+    shuffle=True,               # random shuffle for training
+    num_workers=2,              # subprocesses for loading data
+)
+```
+
+
+
+### 常见优化器
+
+```
+opt_SGD         = torch.optim.SGD(net_SGD.parameters(), lr=LR)
+opt_Momentum    = torch.optim.SGD(net_Momentum.parameters(), lr=LR, momentum=0.8)
+opt_RMSprop     = torch.optim.RMSprop(net_RMSprop.parameters(), lr=LR, alpha=0.9)
+opt_Adam        = torch.optim.Adam(net_Adam.parameters(), lr=LR, betas=(0.9, 0.99))
+```
+
+
+
+### 定义一个卷积层
+
+```
+super(CNN, self).__init__()
+self.conv1 = nn.Sequential(         # input shape (1, 28, 28)    
+nn.Conv2d(        
+in_channels=1,              # input height        
+out_channels=16,            # n_filters        
+kernel_size=5,              # filter size        
+stride=1,                   # filter movement/step        
+padding=2,                  # if want same width and length of this image after Conv2d, padding=(kernel_size-1)/2 if stride=1    
+),                              # output shape (16, 28, 28)    
+nn.ReLU(),                      # activation
+nn.MaxPool2d(kernel_size=2),    # choose max value in 2x2 area, output shape (16, 14, 14)
+)
+```
+
+
+
+
+
+### 定义一个RNN
+
+```
+super(RNN, self).__init__()
+self.rnn = nn.LSTM(         # if use nn.RNN(), it hardly learns    
+input_size=INPUT_SIZE,    
+hidden_size=64,         # rnn hidden unit    
+num_layers=1,           # number of rnn layer    
+batch_first=True,       # input & output will has batch size as 1s dimension. e.g. (batch, time_step, input_size)
+)
+```
 
 参考文献：
 [pytorch官网](https://pytorch.org/)
@@ -244,3 +324,5 @@ model = nn.DataParallel(model)
 [PyTorch 深度学习:60分钟快速入门](https://blog.csdn.net/u014630987/article/details/78669051)
 [torch---pytorch常用函数](https://blog.csdn.net/qq_24407657/article/details/81835614)
 [Pytorch常用函数操作总结](https://blog.csdn.net/qq_35012749/article/details/88235837)
+
+[Pytorch官网教程中文版](http://pytorch123.com/SecondSection/neural_networks/)
