@@ -11,6 +11,57 @@ PyTorch是一个基于Torch的Python开源机器学习库，用于自然语言�
 （2）tensor.function，如a.view等。
 **说明**：函数名以_结尾的都是inplace方式，即会修改调用者自己的数据，如a.add（b），加法的结果仍存储在a中，a被修改了。
 
+### 数据类型变化
+
+为了方便测试，我们构建一个新的张量，你要转变成不同的类型只需要根据自己的需求选择即可
+
+```
+tensor = torch.Tensor(3, 5)
+```
+
+##### torch.long() 将tensor投射为long类型
+
+```
+newtensor = tensor.long()
+```
+
+##### torch.half()将tensor投射为半精度浮点类型
+
+```
+newtensor = tensor.half()
+```
+
+##### torch.int()将该tensor投射为int类型
+
+```
+newtensor = tensor.int()
+```
+
+##### torch.double()将该tensor投射为double类型
+
+```
+newtensor = tensor.double()
+```
+
+
+
+### Tensor到元素值的转换
+
+x.item()
+
+```python
+x = torch.randn(1)
+print(x)
+print(x.item())
+
+#结果是
+tensor([-0.4464])
+-0.44643348455429077
+```
+
+
+
+
 
 
 ### Tensor 和 numpy 的转换
@@ -20,7 +71,65 @@ a=torch.tensor([12.0,11],requires_grad=True)
 b=b.data.numpy()
 ```
 
+我们很容易用`numpy()`和`from_numpy()`将`Tensor`和NumPy中的数组相互转换。但是需要注意的一点是：
+**这两个函数所产生的的`Tensor`和NumPy中的数组共享相同的内存（所以他们之间的转换很快），改变其中一个时另一个也会改变！！！**
 
+> 还有一个常用的将NumPy中的array转换成`Tensor`的方法就是`torch.tensor()`, 需要注意的是，此方法总是会进行数据拷贝（就会消耗更多的时间和空间），所以返回的`Tensor`和原来的数据不再共享内存。
+
+
+
+### `Tensor` on GPU
+
+
+
+用方法`to()`可以将`Tensor`在CPU和GPU（需要硬件支持）之间相互移动。
+
+``` python
+# 以下代码只有在PyTorch GPU版本上才会执行
+if torch.cuda.is_available():
+    device = torch.device("cuda")          # GPU
+    y = torch.ones_like(x, device=device)  # 直接创建一个在GPU上的Tensor
+    x = x.to(device)                       # 等价于 .to("cuda")
+    z = x + y
+    print(z)
+    print(z.to("cpu", torch.double))       # to()还可以同时更改数据类型
+```
+
+判读GPU是否可用
+
+```python
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+```
+
+我们在进行转换时，需要把数据，网络，与损失函数转换到GPU上
+
+1.构建网络时，把网络，与损失函数转换到GPU上
+
+```python
+net = LeNet()
+net = net.to(device)
+print("training on ", device)
+print(net)
+```
+
+2.训练网络时，把数据转换到GPU上
+
+```python
+x = x.to(device)
+y = y.to(device)
+y_hat = net(x)
+l = loss(y_hat, y)
+```
+
+3.取出数据是，需要从GPU准换到CPU上进行操作
+
+```python
+loss = loss.cpu()
+acc = acc.cpu()
+train_acc_sum += (y_hat.argmax(dim=1) == y).sum().item()
+```
+
+​		
 
 ### 创建Tensor
 |函数|说明  |
@@ -113,7 +222,15 @@ print(a.requires_grad)
 
 ```
 
+> 注意在`y.backward()`时，如果`y`是标量，则不需要为`backward()`传入任何参数；否则，需要传入一个与`y`同形的`Tensor`。为什么在`y.backward()`时，如果`y`是标量，则不需要为`backward()`传入任何参数；否则，需要传入一个与`y`同形的`Tensor`?
+> 简单来说就是为了避免向量（甚至更高维张量）对张量求导，而转换成标量对张量求导。举个例子，假设形状为 `m x n` 的矩阵 X 经过运算得到了 `p x q` 的矩阵 Y，Y 又经过运算得到了 `s x t` 的矩阵 Z。那么按照前面讲的规则，dZ/dY 应该是一个 `s x t x p x q` 四维张量，dY/dX 是一个 `p x q x m x n`的四维张量。问题来了，怎样反向传播？怎样将两个四维张量相乘？？？这要怎么乘？？？就算能解决两个四维张量怎么乘的问题，四维和三维的张量又怎么乘？导数的导数又怎么求，这一连串的问题，感觉要疯掉…… 
+> 为了避免这个问题，我们**不允许张量对张量求导，只允许标量对张量求导，求导结果是和自变量同形的张量**。所以必要时我们要把张量通过将所有张量的元素加权求和的方式转换为标量，举个例子，假设`y`由自变量`x`计算而来，`w`是和`y`同形的张量，则`y.backward(w)`的含义是：先计算`l = torch.sum(y * w)`，则`l`是个标量，然后求`l`对自变量`x`的导数。
 
+如果不想要被继续追踪，可以调用`.detach()`将其从追踪记录中分离出来，这样就可以防止将来的计算被追踪，这样梯度就传不过去了。此外，还可以用`with torch.no_grad()`将不想被追踪的操作代码块包裹起来，这种方法在评估模型的时候很常用，因为在评估模型时，我们并不需要计算可训练参数（`requires_grad=True`）的梯度。
+
+`		Function`是另外一个很重要的类。`Tensor`和`Function`互相结合就可以构建一个记录有整个计算过程的有向无环图（DAG）。每个`Tensor`都有一个`.grad_fn`属性，该属性即创建该`Tensor`的`Function`, 就是说该`Tensor`是不是通过某些运算得到的，若是，则`grad_fn`返回一个与这些运算相关的对象，否则是None。
+
+下面通过一些例子来理解这些概念。  
 
 
 ## 2.3 构建神经网络
@@ -249,11 +366,14 @@ model = nn.DataParallel(model)
 
 ### 存储和提取模型参数
 
-```
+```python
 torch.save(net1, 'net.pkl')  # save entire net
 torch.save(net1.state_dict(), 'net_params.pkl')   # save only the parameters
 net3.load_state_dict(torch.load('net_params.pkl'))
 
+# 存储Tensor
+torch.save([x, y], 'xy.pt')
+xy_list = torch.load('xy.pt')
 ```
 
 ### 批量的数据
@@ -317,6 +437,26 @@ num_layers=1,           # number of rnn layer
 batch_first=True,       # input & output will has batch size as 1s dimension. e.g. (batch, time_step, input_size)
 )
 ```
+
+
+
+### onehot
+
+```
+batch_size = 2
+sequence_len = 3
+hidden_dim = 5
+x = torch.zeros(batch_size, sequence_len, hidden_dim).scatter_(dim=-1,
+                               index=torch.LongTensor([[[2],[2],[1]],[[1],[2],[3]]]),
+                               value=1)
+
+print(x)
+————————————————
+版权声明：本文为CSDN博主「guotong1988」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/guotong1988/article/details/102541546
+```
+
+
 
 参考文献：
 [pytorch官网](https://pytorch.org/)
