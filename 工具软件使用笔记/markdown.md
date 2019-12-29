@@ -27,7 +27,16 @@ Markdown是一种纯文本格式的标记语言。通过简单的标记语法，
     [超链接名](超链接地址 "超链接title")
     title可加可不加
 
+```
+<div align=center>
+<img width="500" src="pic\Figure 2.4 Tensors are views over a Storage instance.png" >
+</div>	
+```
+
+
+
 ## 无序列表
+
 无序列表用 - + * 任何一种都可以，注意：- + * 跟内容之间都要有一个空格。
 
     - 列表内容
@@ -53,7 +62,50 @@ Markdown是一种纯文本格式的标记语言。通过简单的标记语法，
 内容|内容|内容
 内容|内容|内容
 
+
+
+### 表格换行和合并单元格
+
+表格内容换行 `<br>` 
+
+合并表格行 `colspan`
+
+```html
+<table>
+	<tr>
+		<td>小王</td>
+		<td>小小王</td>
+	<tr>
+	<tr>
+		<td colspan="2">隔壁老王</td>
+	<tr>
+</table>
+```
+
+合并表格列`rowspan`
+
+```html
+<table>
+	<tr>
+		<td>车神</td>
+		<td>名车</td>
+	</tr>
+	<tr>
+		<td rowspan="2">隔壁老王</td>
+		<td>自行车</td>
+	</tr>
+	<tr>
+		<td>电瓶车</td>
+	</tr>
+</table>
+```
+
+参考 [Markdown表格-换行、合并单元格](https://blog.csdn.net/qq_42711815/article/details/89257489)
+
+
+
 ## 代码
+
 单行代码：代码之间分别用一个反引号包起来
 `代码内容`
 代码块：代码之间分别用三个反引号包起来，且两边的反引号单独占一行

@@ -167,7 +167,26 @@ train_acc_sum += (y_hat.argmax(dim=1) == y).sum().item()
 |torch.masked_select(input, mask)|例子如上，a[a>0]，使用ByteTensor进行选取|
 |torch.non_zero(input)|非0元素的下标|
 
+#### advanced indexing
+
+​		通过利用PyTorch  advanced indexing 的属性，你可以用一个二元张量来索引数据张量。这个张量本质上是把数据过滤成索引张量中只对应于1的项(或行)。  
+
+```python
+bad_indexes = torch.le(target, 3)
+bad_indexes.shape, bad_indexes.dtype, bad_indexes.sum()
+# Out[13]:
+(torch.Size([4898]), torch.uint8, tensor(20))
+# In[14]:
+bad_data = data[bad_indexes]
+bad_data.shape
+# Out[14]:
+torch.Size([20, 11])
+```
+
+
+
 ### 数值计算
+
 |函数|说明  |
 |--|--|
 |abs/sqrt/div/exp/fmod/log/pow..|绝对值/平方根/除法/指数/求余/求幂..|
