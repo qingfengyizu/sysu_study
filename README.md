@@ -15,7 +15,6 @@ git clone https://github.com/qingfengyizu/sysu_study.git
 
 3、编辑项目
 
-
 4、本地同步到GitHub
 
 ```shell
@@ -124,7 +123,7 @@ git push origin master
 
 ### 3.3.1 PyTorch
 
-​	[动手学深度学习 Pytorch](GitHub_project_note/动手学深度学习 Pytorch/动手学深度学习 Pytorch-版本39.md)
+​	[动手学深度学习 Pytorch](./GitHub_project_note/动手学深度学习 Pytorch/动手学深度学习 Pytorch-版本39.md)
 
 
 
@@ -136,5 +135,4 @@ git push origin master
 
 ### 3.4.2 美剧学英语
 
-​		[Friends](./GitHub_project_note/美剧学英语/friends)
-
+​		[Friends](GitHub_project_note/美剧学英语/friends.md)
