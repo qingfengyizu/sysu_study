@@ -136,4 +136,5 @@ git push origin master
 
 ### 3.4.2 美剧学英语
 
-​		[Friends](GitHub_project_note/美剧学英语/friends)
+​		[Friends](./GitHub_project_note/美剧学英语/friends)
+
