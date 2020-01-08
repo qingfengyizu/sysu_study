@@ -1,3 +1,5 @@
+[Python - 100天从新手到大师](https://github.com/jackfrued/Python-100-Days) 
+
 ### 1、linux 基础命令
 
 Linux系统的命令通常都是如下所示的格式：

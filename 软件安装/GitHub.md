@@ -1,10 +1,10 @@
-##什么是 Github?
+## 什么是 Github?
 github是一个基于git的代码托管平台，付费用户可以建私人仓库，我们一般的免费用户只能使用公共仓库，也就是代码要公开。
 
-##Github 安装
+## Github 安装
 下载 git Windows版
 
-##配置Git
+## 配置Git
 首先在本地创建ssh key；
 
     $ ssh-keygen -t rsa -C "your_email@youremail.com"
