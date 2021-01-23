@@ -16,6 +16,7 @@ scl_keygen
 
 [\[资料\] DesignCompiler2016和PrimeTime2016的软件破解与安装](http://bbs.eetop.cn/thread-763341-1-1.html)
 [从零开始VCS+Verdi 安装过程](https://blog.csdn.net/Ztrans/article/details/88757695)
+
 # 二、软件安装
 ## 2.1 安装synopsys installer
 运行SynopsysInstaller_v3.3.run，终端./SynopsysInstaller_v3.3.run，输入安装路径，将synopsys installer安装到文件夹，得到~/synopsys/install中的setup.sh文件。
@@ -41,7 +42,7 @@ netstat -ap | grep 27000
 kill -9 XXX(看到的占用端口的ID号)
 
 ### 3.4获取license
-参考 [VCS+Verdi 安装及破解过程（CentOS7)-----FPGA开发](https://blog.csdn.net/qq_40829605/article/details/85345795)
+参考 [VCS+Verdi 安装及破解过程（CentOS7)-----FPGA开发](https://blog.csdn.net/qq_40829605/article/details/85345795) [最新版本](http://bbs.eetop.cn/thread-877536-1-1.html)
 
 
 ### 3.4 添加环境变量
@@ -63,8 +64,9 @@ kill -9 XXX(看到的占用端口的ID号)
     export PATH=$PATH:/home/synopsys/ICC-L-2016.03-SP1/bin/
     export PATH=$PATH:/home/synopsys/ICC-L-2016.03-SP1/linux64/
     alias icc='icc_shell -gui'
-    
-    
+
+
+​    
     #VCS
     export DVE_HOME=/home/synopsys/VCS-L-2016.06/gui/dve
     export PATH=$PATH:/home/synopsys/VCS-L-2016.06/gui/dve/bin
@@ -96,5 +98,15 @@ kill -9 XXX(看到的占用端口的ID号)
 首先根据提示，执行`sudo yum -y install libtiff.so.3`安装函数库，但安装完后发现还是提示刚才的错误，进入/usr/lib，发现这个函数库确实已经安装好了。
 这时我们进入/usr/lib64目录下，并执行`ln -s libtiff.so.5 libtiff.so.3`，然后问题解决了。
 参考：[装Custom Waveview时error while loading shared libraries: libtiff.so.3](http://bbs.eetop.cn/thread-762453-1-1.html)
+
+## 3.7 修改hostname 
+
+```
+gedit etc/hosts
+最后添加 127.0.0.1 pcname 
+```
+
+参考 [博客](http://www.360doc.com/content/14/1127/17/14187254_428530562.shtml)和[博客](http://bbs.eetop.cn/thread-306118-1-1.html)
+
 # 说明！！仅做学习使用！！无商业用途！！
 参考：

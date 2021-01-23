@@ -171,6 +171,14 @@ https://blog.csdn.net/lingyunxianhe/article/details/85012003
 ## tensorflow-gpu-1.10安装
 增加第三方镜像连接
 
+添加目前可用的中科大镜像源：
+
+```
+conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/
+```
+
+
+
 ```
 conda config --add channels r # R软件包
 conda config --add channels conda-forge # Conda社区维护的不在默认通道中的软件
@@ -241,7 +249,7 @@ https://blog.csdn.net/qq_30683995/article/details/82619859
 下载.whl安装文件，可以按pytorch安装指南的[官网](https://pytorch.org/get-started/previous-versions/)，选择适合自己的版本，选择用迅雷下载连接 https://download.pytorch.org/whl/cu90/torch-1.1.0-cp36-cp36m-win_amd64.whl。
 
  安装pytorch
- 
+
 
 ``` javascript
 pip install torch-1.1.0-cp36-cp36m-win_amd64.whl

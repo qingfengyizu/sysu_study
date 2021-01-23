@@ -1,5 +1,38 @@
-## update
-2019.09.01 初稿
+内容：markdown note
+
+time : 2019.09.01 
+
+[TOC]
+
+
+
+## 常用
+
+**插入表格**
+
+```markdown
+<div align=center>
+<img width="500" src="pic\Figure 2.4 Tensors are views over a Storage instance.png" >
+</div>	
+```
+
+**公式编号**
+
+```markdown
+Suppose we solve equations 
+$$
+\mathcal L U = F \tag{1}
+$$
+...
+...
+In the equation $\eqref{eq1}$, ...
+```
+
+**公式中的空格**
+
+\quad
+
+
 
 Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式
 文章主要是介绍Markdown的基本用法，方便后续写博文和脚本记录文档。

@@ -1,7 +1,7 @@
 **时间**：2019.11.22
 **说明**：本文件夹主要用于记录工程中遇到问题：
 
-
+[文件位置](./)
 
 **文件夹更新脚本**
 
@@ -33,7 +33,7 @@ git push origin master
 
 ## 1.1 常用软件
 
-​		[常用软件](软件安装/软件安装)
+​		[常用软件](软件安装/常用软件.md)
 
 ​		[GitHub](软件安装/GitHub.md)
 
@@ -82,6 +82,8 @@ git push origin master
 ​	[matlab](工具软件使用笔记/matlab.md)
 
 ​	[python](工具软件使用笔记/python.md)
+
+​	[C](工具软件使用笔记/C.md)
 
 ### 2.3.2 深度学习框架
 
@@ -135,4 +137,10 @@ git push origin master
 
 ### 3.4.2 美剧学英语
 
-​		[Friends](GitHub_project_note/美剧学英语/friends.md)
+​		[Friends](GitHub_project_note/美剧学英语/friends.md)	
+
+​		[美剧单词本](GitHub_project_note/美剧学英语/美剧单词本.md)
+
+### 3.4.3 英语歌
+
+​		
