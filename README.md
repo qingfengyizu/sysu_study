@@ -65,6 +65,8 @@ git push origin master
 
 ​	[markdown](工具软件使用笔记/markdown.md)
 
+​	[Git](工具软件使用笔记/Git.md)
+
 ​	[Photoshop](工具软件使用笔记/Photoshop.md)
 
 ## 2.2 开发环境
