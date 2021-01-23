@@ -131,16 +131,6 @@ git push origin master
 
 ## 3.4 英语
 
-### 3.4.1 如何学英语
 
-
-
-### 3.4.2 美剧学英语
-
-​		[Friends](GitHub_project_note/美剧学英语/friends.md)	
-
-​		[美剧单词本](GitHub_project_note/美剧学英语/美剧单词本.md)
-
-### 3.4.3 英语歌
 
 ​		
