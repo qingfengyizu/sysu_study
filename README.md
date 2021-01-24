@@ -19,6 +19,7 @@ git clone https://github.com/qingfengyizu/sysu_study.git
 
 ```shell
 git add . 
+git diff HEAD
 git commit -m "note"
 git pull origin master
 git push origin master
@@ -43,9 +44,9 @@ git push origin master
 
 ​		[TensorFlow PyTorch 环境安装](软件安装/TensorFlow环境安装.md)
 
-​		[Ubuntu16.04 TensorFlow](软件安装/Ubuntu16.04 TensorFlow.md)
+​		[Ubuntu16.04 TensorFlow](软件安装//Ubuntu16.04 TensorFlow.md)
 
-​		[centos7 TensorFlow环境](软件安装/centos7 TensorFlow环境.md)
+​		[centos7 TensorFlow环境](软件安装//centos7 TensorFlow环境.md)
 
 ​		[强化学习环境](软件安装/强化学习环境.md)
 
