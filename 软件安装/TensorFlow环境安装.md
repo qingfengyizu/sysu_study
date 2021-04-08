@@ -256,7 +256,12 @@ pip install torch-1.1.0-cp36-cp36m-win_amd64.whl
 pip install torchvision
 ```
 
+```
+pip install torch==1.3.1 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
 更新numpy
+
 ``` javascript
 pip install numpy =1.14.5 
 ```

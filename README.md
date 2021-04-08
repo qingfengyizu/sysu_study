@@ -80,7 +80,7 @@ git push origin master
 
 ### 2.3.1 数学工具
 
-​	[cplex](工具软件使用笔记/工具软件使用笔记/cplex.md)
+​	[cplex](工具软件使用笔记/cplex.md)
 
 ​	[matlab](工具软件使用笔记/matlab.md)
 
