@@ -22,7 +22,7 @@
 找到文件中的下列代码
 
 
-    
+​    
     #enable bash completion in interactive shells  
     #if ! shopt -oq posix; then  
     #  if [-f  /usr/share/bash-completion/bash_completion ]; then  
@@ -145,7 +145,7 @@ Ubuntu版本MATLAB的安装和破解参考
 https://blog.csdn.net/weixin_41038644/article/details/84680646
 创建桌面快捷方式matlab.desktop
 
-    
+
     [Desktop Entry]
     Type=Application
     Name=Matlab
@@ -161,4 +161,11 @@ https://blog.csdn.net/weixin_41038644/article/details/84680646
 
 
     chmod +x *.desktop 
+
+添加环境变量，[参考](https://blog.csdn.net/mifangdebaise/article/details/78003625)
+
+```
+#1. set matlab path
+PATH=/opt/matlab2016b/bin/:$PATH; export PATH
+```
 
