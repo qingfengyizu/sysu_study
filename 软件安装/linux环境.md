@@ -28,6 +28,10 @@ tmux new -s roclinux
  - 第一步：按 Ctrl-B 组合键，然后松开。
  - 第二步：按数字 0 键。
 
+**退出(detach)当前tmux**
+
+ctrl+d
+
 ##### 回复端口
 
 ``` javascript
